@@ -1,1 +1,0 @@
-// Creating of a simple calculator
