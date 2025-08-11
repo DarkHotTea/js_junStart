@@ -45,7 +45,7 @@ let checkOperation = (operation) => {
   if (!operations.hasOwnProperty(operation)) {
     alert("Enter the right operation!!");
     operation = prompt("And the operation... (+ | - | * | / | % | ^)");
-    return checkOperation();
+    return checkOperation(operation);
   }
   return operation;
 }
