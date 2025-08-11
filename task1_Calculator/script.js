@@ -15,30 +15,16 @@ const operations = {
   "^": (a, b) => a ** b,
 };
 
-// The checking functions for only two numbers. The future version will discard this "clumsiness" like count restriction
-let checkFirstNum = (firstNum) => {
-  firstNum = parseFloat(firstNum);
-  console.log(firstNum);
-  
+//! Update - deleted the clone, here is now only a single checking function for the nums
+let checkNum = (value) => {
+  num = parseFloat(value);
   // Using of regular expression + recursion 
-  if (!cheking.test(firstNum)) {
-    alert("Enter the right num!!");
-    firstNum = prompt("First num: ");
-    return checkFirstNum(firstNum);
+  if (!cheking.test(num)) {
+    num = prompt("Enter the right num!!");
+    return checkFirstNum(num);
   }
-  return firstNum;
+  return num;
 };
-
-let checkSecondNum = (secondNum) => {
-  secondNum = parseFloat(secondNum);
-  if (!cheking.test(secondNum)) {
-    alert("Enter the right num!!");
-    secondNum = prompt("Second num: ");
-    return checkSecondNum(secondNum);
-  }
-  return secondNum;
-};
-
 
 let checkOperation = (operation) => {
   operation = operation.trim();
@@ -50,13 +36,12 @@ let checkOperation = (operation) => {
   return operation;
 }
 
-// Final function of counting
+//! Update - the function relieved from the excess checking
 function calculator(firstNum, secondNum, operation) {
-  let answer = operations[operation](firstNum, secondNum);
-  return answer == undefined ? alert("💩") : alert(`Your answer is ${answer}`);
+  return answer = operations[operation](firstNum, secondNum);
 }
 
-//! Start
+//* Start
 let firstNum = checkFirstNum(prompt("First num: "));
 let secondNum = checkSecondNum(prompt("Second num: "));
 let operation = checkOperation(prompt("And the operation... (+ | - | * | / | % | ^)"));
