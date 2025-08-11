@@ -21,7 +21,7 @@ let checkNum = (value) => {
   // Using of regular expression + recursion 
   if (!cheking.test(num)) {
     num = prompt("Enter the right num!!");
-    return checkFirstNum(num);
+    return checkNum(num);
   }
   return num;
 };
@@ -38,12 +38,13 @@ let checkOperation = (operation) => {
 
 //! Update - the function relieved from the excess checking
 function calculator(firstNum, secondNum, operation) {
-  return answer = operations[operation](firstNum, secondNum);
+  answer = operations[operation](firstNum, secondNum);
+  return alert(`Your answer is ${answer}`);
 }
 
 //* Start
-let firstNum = checkFirstNum(prompt("First num: "));
-let secondNum = checkSecondNum(prompt("Second num: "));
+let firstNum = checkNum(prompt("First num: "));
+let secondNum = checkNum(prompt("Second num: "));
 let operation = checkOperation(prompt("And the operation... (+ | - | * | / | % | ^)"));
 
 calculator(firstNum, secondNum, operation);
