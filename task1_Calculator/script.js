@@ -2,10 +2,8 @@
 
 alert("please, enter the nums and operation!");
 
-// Added value's checking with regular expression - also it's a bit smarter for the rest of validate functions (makings to the nex version)
 const cheking = /^\-?[0-9]+([.,][0-9]+)?$/;
 
-// Switch-case removed, added object with functions and operations as keys
 const operations = {
   "+": (a, b) => a + b,
   "-": (a, b) => a - b,
@@ -15,15 +13,15 @@ const operations = {
   "^": (a, b) => a ** b,
 };
 
-//! Update - deleted the clone, here is now only a single checking function for the nums
+//! Update - added the rounding up a number, also the regular expression is moved up, changed the name of variable
 let checkNum = (value) => {
-  num = parseFloat(value);
-  // Using of regular expression + recursion 
-  if (!cheking.test(num)) {
-    num = prompt("Enter the right num!!");
-    return checkNum(num);
+  if (!cheking.test(value)) {
+    value = prompt("Enter the right num!!");
+    return checkNum(value);
   }
-  return num;
+  value = parseFloat(value);
+  value = Math.round(value * 100) / 100;
+  return value;
 };
 
 let checkOperation = (operation) => {
@@ -36,15 +34,17 @@ let checkOperation = (operation) => {
   return operation;
 }
 
-//! Update - the function relieved from the excess checking
-function calculator(firstNum, secondNum, operation) {
+//! Update - the function is repeatable
+function calculator() {
+  let firstNum = checkNum(prompt("First num: "));
+  let secondNum = checkNum(prompt("Second num: "));
+  let operation = checkOperation(prompt("And the operation... (+ | - | * | / | % | ^)"));
   answer = operations[operation](firstNum, secondNum);
-  return alert(`Your answer is ${answer}`);
+  let nextOperation = confirm(`Your answer is ${answer}. Repeat the game?`);
+  if (nextOperation) return calculator();
+  return;
 }
 
-//* Start
-let firstNum = checkNum(prompt("First num: "));
-let secondNum = checkNum(prompt("Second num: "));
-let operation = checkOperation(prompt("And the operation... (+ | - | * | / | % | ^)"));
 
-calculator(firstNum, secondNum, operation);
+//* Start
+calculator();
